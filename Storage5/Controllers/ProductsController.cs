@@ -37,14 +37,15 @@ namespace Storage5.Controllers
                 Name = e.Name,
                 Price = e.Price,
                 Count = e.Count,
+                InventoryValue = (e.Price * e.Count)
             }).ToListAsync();
-            
-        
-            var total = 0;
-            viewModel.ForEach(x =>
-                {
-                    x.InventoryValue += x.Price;
-                }); 
+
+
+            //var total = 0;
+            //viewModel.ForEach(x =>
+            //    {
+            //        x.total += (x.Price * x.Count);
+            //    });
             return View(nameof(Inventory), viewModel);
         }
 
