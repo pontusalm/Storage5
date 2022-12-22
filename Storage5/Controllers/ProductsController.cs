@@ -20,6 +20,7 @@ namespace Storage5.Controllers
             _context = context;
         }
 
+
         // GET: Products
         public async Task<IActionResult> Index()
         {
@@ -37,19 +38,35 @@ namespace Storage5.Controllers
                 Name = e.Name,
                 Price = e.Price,
                 Count = e.Count,
-                InventoryValue = (e.Price * e.Count)
-            }).ToListAsync();
+                InventoryValue = (e.Price * e.Count),
+        }       ).ToListAsync();
 
+            
+            //var total = 0;
+            //viewModel.ForEach(x =>
+            //    {
+            //        total += (x.InventoryValue);
+            //    });
 
             //var total = 0;
             //viewModel.ForEach(x =>
             //    {
-            //        x.total += (x.Price * x.Count);
+            //        total += (x.InventoryValue);
             //    });
             return View(nameof(Inventory), viewModel);
         }
 
+        //public async Task<IActionResult> InventoryTotal()
+        //{
+        //    var products = await _context.Product.ToListAsync();
 
+        //    var inventoryTotal = 0;
+        //    foreach (var product in products)
+        //    {
+        //        inventoryTotal += product.Price * product.Count;
+        //    }
+        //    return View(inventoryTotal);
+        //}
 
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
