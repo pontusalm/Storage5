@@ -68,6 +68,25 @@ namespace Storage5.Controllers
         //    return View(inventoryTotal);
         //}
 
+
+        public async Task<IActionResult> Filter(string category)
+        {
+            if (category == null || _context.Product == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Product
+                .FirstOrDefaultAsync(m => m.Category == category);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(await _context.Product.ToListAsync());
+        }
+
+
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {

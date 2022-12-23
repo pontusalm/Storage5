@@ -1,26 +1,13 @@
 ﻿@model IEnumerable<Storage5.Models.Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Filter";
 }
 
-<h1>Home</h1>
+<h1>Filter</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
-</p>
-<p>
-    <h5>Filter:</h5>
-    <select id="Filter" name="Filter">
-        <option value="Fruits"><a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Filter" asp-route-category="Fruits">Fruits</a> </option>
-        <option value="Sports"><a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Filter" asp-route-category="Sports">Sports</a> </option>
-        <option value="Vegetables"><a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Filter" asp-route-category="Vegetables">Vegetables</a> </option>
-    </select>
-    @*<option value="Fruits">Filter Fruits </option>*@
-
-    <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Filter" asp-route-category="Fruits">Fruits</a>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Filter" asp-route-category="Sports">Sports</a>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Filter" asp-route-category="Vegetables">Vegetables</a>
 </p>
 <table class="table">
     <thead>
