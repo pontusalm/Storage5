@@ -13,7 +13,6 @@
 
         public int InventoryValue { get; set; }
 
-        public int inventoryTotal { get; set; }
 
 
 

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.ConstrainedExecution;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Storage5.Data;
+using Storage5.Migrations;
 using Storage5.Models;
 
 namespace Storage5.Controllers
@@ -41,49 +43,13 @@ namespace Storage5.Controllers
                 InventoryValue = (e.Price * e.Count),
         }       ).ToListAsync();
 
-            
-            //var total = 0;
-            //viewModel.ForEach(x =>
-            //    {
-            //        total += (x.InventoryValue);
-            //    });
-
-            //var total = 0;
-            //viewModel.ForEach(x =>
-            //    {
-            //        total += (x.InventoryValue);
-            //    });
             return View(nameof(Inventory), viewModel);
         }
 
-        //public async Task<IActionResult> InventoryTotal()
-        //{
-        //    var products = await _context.Product.ToListAsync();
-
-        //    var inventoryTotal = 0;
-        //    foreach (var product in products)
-        //    {
-        //        inventoryTotal += product.Price * product.Count;
-        //    }
-        //    return View(inventoryTotal);
-        //}
-
-
         public async Task<IActionResult> Filter(string category)
         {
-            if (category == null || _context.Product == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.Category == category);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(await _context.Product.ToListAsync());
+            List<Product> products = await _context.Product.ToListAsync();
+            return View(products.Where(c => c.Category == category).ToArray());
         }
 
 
